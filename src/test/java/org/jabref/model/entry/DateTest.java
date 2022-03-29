@@ -47,6 +47,28 @@ class DateTest {
     }
 
     @Test
+    void equalsDate() throws Exception {
+        boolean expected = false;
+        Date entry = new Date(2022, 03, 28);
+        Object entry2 = LocalDate.of(2021, 03, 28);
+        assertEquals(expected, entry.equals(entry2));
+    }
+
+    @Test
+    void nullDate() throws Exception {
+        boolean expected = false;
+        Date entry = new Date(2022, 03, 28);
+        assertEquals(expected, entry.equals(null));
+    }
+
+    @Test
+    void correctlyDate() throws Exception {
+        boolean expected = true;
+        Date entry = new Date(2022, 03, 28);
+        assertEquals(expected, entry.equals(new Date(2022, 03, 28)));
+    }
+
+    @Test
     void parseDateNull() {
         assertThrows(NullPointerException.class, () -> Date.parse(null));
     }
@@ -64,7 +86,7 @@ class DateTest {
                 Arguments.of("32-06-2014", "day of month exists [1]"),
                 Arguments.of("00-06-2014", "day of month exists [2]"),
                 Arguments.of("30-13-2014", "month exists [1]"),
-                Arguments.of("30-00-2014", "month exists [2]")
-        );
+                Arguments.of("30-00-2014", "month exists [2]"));
     }
+
 }
